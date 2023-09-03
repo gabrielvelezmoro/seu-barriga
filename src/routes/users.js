@@ -1,11 +1,14 @@
-module.exports = () => {
+module.exports = (app) => {
   const findAll = (req, res) => {
-    const users = [{ name: "John Doe", email: "mail@mail.com" }];
-    res.json(users).status(200).send();
+    app
+      .db("users")
+      .select()
+      .then((result) => res.json(result).status(200));
   };
 
-  const create = (req, res) => {
-    res.status(201).json(req.body);
+  const create = async (req, res) => {
+    const result = await app.db("users").insert(req.body, "*");
+    res.status(201).json(result[0]);
   };
 
   return { findAll, create };
