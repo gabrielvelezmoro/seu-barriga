@@ -22,3 +22,16 @@ test("Deve inserir uma conta com sucesso", () =>
       expect(result.status).toBe(201);
       expect(result.body.name).toBe("acc 1");
     }));
+
+test("Deve listar todas as contas", () =>
+  app
+    .db("accounts")
+    .insert({ name: "Acc List", user_id: user.id })
+    .then(() =>
+      request(app)
+        .get(MAIN_ROUTE)
+        .then((res) => {
+          expect(res.status).toBe(200);
+          expect(res.body.length).toBeGreaterThan(0);
+        }),
+    ));
