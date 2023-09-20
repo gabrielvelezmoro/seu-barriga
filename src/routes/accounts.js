@@ -22,5 +22,9 @@ module.exports = (app) => {
       .then((result) => res.json(result[0]).status(200));
   };
 
-  return { create, findAll, get, update };
+  const remove = (req, res) => {
+    app.services.account.remove(req.params).then(() => res.status(204).send());
+  };
+
+  return { create, findAll, get, update, remove };
 };

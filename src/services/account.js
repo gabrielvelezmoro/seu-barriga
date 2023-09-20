@@ -4,6 +4,7 @@ module.exports = (app) => {
   const find = (filter = {}) => app.db("accounts").where(filter).first();
   const update = (id, account) =>
     app.db("accounts").where(id).update(account, "*");
+  const remove = (id) => app.db("accounts").where(id).delete();
 
-  return { save, findAll, find, update };
+  return { save, findAll, find, update, remove };
 };
