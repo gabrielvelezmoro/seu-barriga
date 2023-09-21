@@ -32,6 +32,8 @@ test("Não deve inserir uma conta sem nome", () =>
       expect(result.body.error).toBe("Nome é um atributo obrigatório");
     }));
 
+test.skip("Não deve inserir uma conta de nome duplicado para o mesmo usuario", () => {});
+
 test("Deve listar todas as contas", () =>
   app
     .db("accounts")
@@ -44,6 +46,8 @@ test("Deve listar todas as contas", () =>
           expect(res.body.length).toBeGreaterThan(0);
         }),
     ));
+
+test.skip("Deve listar apenas as contas do usuário", () => {});
 
 test("Deve retornar uma conta por id", () =>
   app
@@ -58,6 +62,8 @@ test("Deve retornar uma conta por id", () =>
           expect(res.body.user_id).toBe(user.id);
         }),
     ));
+
+test.skip("Não deve retornar a conta de outro usuário", () => {});
 
 test("Deve alterar uma conta", () =>
   app
